@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.scss" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Quicksand"
+      rel="stylesheet"
+    />
+    <script src="vue.js" type="module"></script>
+  </head>
+
+  <body>
+    <section class="todo-app">
+      <h1 class="todo-title">To-Do To-Day</h1>
+      <div id="todo-list">
+        <ol>
+          <li
+            class="todo-item"
+            v-on:donetask="donetask(todo.id,todo.title,todo.status)"
+            is="todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.title"
+            v-on:remove="remove(todo.id)"
+            v-bind:class="{'todo-done': todo.status}"
+          ></li>
+        </ol>
+        <input
+          class="todo-input"
+          v-model="newTodoText"
+          v-on:keyup.enter="addNewTodo"
+          placeholder="Add new todo"
+        />
+        <button class="todo-complete-all" v-on:click="doneall">
+          Complete All
+        </button>
+      </div>
+    </section>
+  </body>
+</html>
